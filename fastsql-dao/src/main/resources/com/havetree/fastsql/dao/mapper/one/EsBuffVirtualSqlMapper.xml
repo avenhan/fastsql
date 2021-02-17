@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.havetree.fastsql.dao.mapper.one.EsBuffVirtualSqlMapper">
+  <resultMap id="BaseResultMap" type="com.havetree.fastsql.dao.pojo.po.EsBuffVirtualSqlPo">
+    <result column="id" jdbcType="BIGINT" property="id" />
+    <result column="virtual_name" jdbcType="VARCHAR" property="virtualName" />
+    <result column="db_type" jdbcType="TINYINT" property="dbType" />
+    <result column="db_source" jdbcType="TINYINT" property="dbSource" />
+    <result column="db_name" jdbcType="VARCHAR" property="dbName" />
+    <result column="run_sql" jdbcType="LONGVARCHAR" property="runSql" />
+    <result column="sql_md5" jdbcType="VARCHAR" property="sqlMd5" />
+    <result column="fields" jdbcType="LONGVARCHAR" property="fields" />
+    <result column="db_fields" jdbcType="LONGVARCHAR" property="dbFields" />
+    <result column="anchor" jdbcType="VARCHAR" property="anchor" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="status" jdbcType="SMALLINT" property="status" />
+    <result column="is_synced" jdbcType="TINYINT" property="isSynced" />
+    <result column="sync_time" jdbcType="TIMESTAMP" property="syncTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+  </resultMap>
+
+  <insert id="insert" parameterType="com.havetree.fastsql.dao.pojo.po.EsBuffVirtualSqlPo" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+    insert into zto_es_buff_virtual_sql
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="virtualName != null">
+        virtual_name,
+      </if>
+      <if test="dbType != null">
+        db_type,
+      </if>
+      <if test="dbSource != null">
+        db_source,
+      </if>
+      <if test="dbName != null">
+        db_name,
+      </if>
+      <if test="sqlMd5 != null">
+        sql_md5,
+      </if>
+      <if test="runSql != null">
+        run_sql,
+      </if>
+      <if test="fields != null">
+        fields,
+      </if>
+      <if test="dbFields != null">
+        db_fields,
+      </if>
+      <if test="anchor != null">
+        anchor,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+
+      <if test="status != null">
+        status,
+      </if>
+
+      <if test="isSynced != null">
+        is_synced,
+      </if>
+
+      <if test="syncTime != null">
+        sync_time,
+      </if>
+
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="virtualName != null">
+        #{virtualName,jdbcType=VARCHAR},
+      </if>
+      <if test="dbType != null">
+        #{dbType,jdbcType=TINYINT},
+      </if>
+      <if test="dbSource != null">
+        #{dbSource,jdbcType=VARCHAR},
+      </if>
+      <if test="dbName != null">
+        #{dbName,jdbcType=VARCHAR},
+      </if>
+      <if test="sqlMd5 != null">
+        #{sqlMd5,jdbcType=VARCHAR},
+      </if>
+      <if test="runSql != null">
+        #{runSql,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="fields != null">
+        #{fields,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="dbFields != null">
+        #{dbFields,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="anchor != null">
+        #{anchor,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="isSynced != null">
+        #{is_synced,jdbcType=TINYINT},
+      </if>
+      <if test="syncTime != null">
+        #{syncTime,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+
+
+  <select id="list" parameterType="com.havetree.fastsql.dao.pojo.po.EsBuffVirtualSqlPo" resultMap="BaseResultMap">
+      select * from zto_es_buff_virtual_sql
+      where is_deleted=0
+      <if test="virtualName != null">
+        and `virtual_name` = #{virtualName}
+      </if>
+      <if test="dbType != null">
+        and `db_type` = #{dbType}
+      </if>
+      <if test="dbSource != null">
+        and `db_source` = #{dbSource}
+      </if>
+      <if test="dbName != null">
+        and `db_name` = #{dbName}
+      </if>
+    <if test="sqlMd5 != null">
+      and `sql_md5` = #{sqlMd5}
+    </if>
+      <if test="runSql != null">
+        and `run_sql` = #{runSql}
+      </if>
+      <if test="fields != null">
+        and `fields` = #{fields}
+      </if>
+    <if test="dbFields != null">
+      and `db_fields` = #{dbFields}
+    </if>
+      <if test="anchor != null">
+        and `anchor` = #{anchor}
+      </if>
+      <if test="userId != null">
+        and `user_id` = #{userId}
+      </if>
+      <if test="status != null">
+        and `status` = #{status}
+      </if>
+      <if test="isSynced != null">
+        and `is_synced` = #{isSynced}
+      </if>
+
+    </select>
+
+  <select id="get" resultMap="BaseResultMap">
+    select
+        *
+    from
+        zto_es_buff_virtual_sql
+    where
+        id=#{id,jdbcType=BIGINT}
+  </select>
+
+  <update id="update" parameterType="com.havetree.fastsql.dao.pojo.po.EsBuffVirtualSqlPo">
+    update zto_es_buff_virtual_sql
+    <set>
+      <if test="virtualName != null">
+        `virtual_name` = #{virtualName},
+      </if>
+      <if test="dbType != null">
+        `db_type` = #{dbType},
+      </if>
+      <if test="dbSource != null">
+        `db_source` = #{dbSource},
+      </if>
+      <if test="dbName != null">
+        `db_name` = #{dbName},
+      </if>
+      <if test="sqlMd5 != null">
+        `sql_md5` = #{sqlMd5},
+      </if>
+      <if test="runSql != null">
+        `run_sql` = #{runSql},
+      </if>
+      <if test="fields != null">
+        `fields` = #{fields},
+      </if>
+      <if test="dbFields != null">
+        `db_fields` = #{dbFields},
+      </if>
+      <if test="anchor != null">
+        `anchor` = #{anchor},
+      </if>
+      <if test="userId != null">
+        `user_id` = #{userId},
+      </if>
+      <if test="userName != null">
+        `user_name` = #{userName},
+      </if>
+      <if test="status != null">
+        `status` = #{status},
+      </if>
+      <if test="isSynced != null">
+        `is_synced` = #{isSynced},
+      </if>
+      <if test="syncTime != null">
+        `sync_time` = #{syncTime},
+      </if>
+      <if test="createTime != null">
+        `create_time` = #{createTime},
+      </if>
+      <if test="updateTime != null">
+        `update_time` = #{updateTime},
+      </if>
+      <if test="isDeleted != null">
+        `is_deleted` = #{isDeleted},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+
+
+</mapper>
