@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zto.ts.esbuff.dao.mapper.one.EsBuffSynConfigMapper">
+  <resultMap id="BaseResultMap" type="com.zto.ts.esbuff.dao.pojo.po.EsBuffSynConfigPo">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="db_type" jdbcType="TINYINT" property="dbType" />
+    <result column="db_source" jdbcType="TINYINT" property="dbSource" />
+    <result column="db_name" jdbcType="VARCHAR" property="dbName" />
+    <result column="tb_name" jdbcType="VARCHAR" property="tbName" />
+    <result column="field_mapper" jdbcType="VARCHAR" property="fieldMapper" />
+    <result column="syn_time" jdbcType="TIMESTAMP" property="synTime" />
+    <result column="re_syn_time" jdbcType="TIMESTAMP" property="reSynTime" />
+    <result column="batch_time" jdbcType="INTEGER" property="batchTime" />
+    <result column="syn_status" jdbcType="TINYINT" property="synStatus" />
+    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <insert id="insert" parameterType="com.zto.ts.esbuff.dao.pojo.po.EsBuffSynConfigPo">
+    insert into zto_es_buff_syn_config (id, db_type, db_source, db_name, tb_name,
+      field_mapper, syn_time, re_syn_time, 
+      batch_time, syn_status, is_deleted, create_time,
+      update_time)
+    values (#{id,jdbcType=INTEGER}, #{dbType,jdbcType=TINYINT},#{dbSource,jdbcType=VARCHAR},#{dbName,jdbcType=VARCHAR}, #{tbName,jdbcType=VARCHAR},
+      #{fieldMapper,jdbcType=VARCHAR}, #{synTime,jdbcType=TIMESTAMP}, #{reSynTime,jdbcType=TIMESTAMP}, 
+      #{batchTime,jdbcType=INTEGER}, #{synStatus,jdbcType=TINYINT}, #{isDeleted,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP},
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zto.ts.esbuff.dao.pojo.po.EsBuffSynConfigPo" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+    insert into zto_es_buff_syn_config
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="dbType != null">
+        db_type,
+      </if>
+      <if test="dbSource != null">
+        db_source,
+      </if>
+      <if test="dbName != null">
+        db_name,
+      </if>
+      <if test="tbName != null">
+        tb_name,
+      </if>
+      <if test="fieldMapper != null">
+        field_mapper,
+      </if>
+      <if test="synTime != null">
+        syn_time,
+      </if>
+      <if test="reSynTime != null">
+        re_syn_time,
+      </if>
+      <if test="batchTime != null">
+        batch_time,
+      </if>
+      <if test="synStatus != null">
+        syn_status,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="dbType != null">
+        #{dbType,jdbcType=TINYINT},
+      </if>
+      <if test="dbSource != null">
+        #{dbSource,jdbcType=VARCHAR},
+      </if>
+      <if test="dbName != null">
+        #{dbName,jdbcType=VARCHAR},
+      </if>
+      <if test="tbName != null">
+        #{tbName,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldMapper != null">
+        #{fieldMapper,jdbcType=VARCHAR},
+      </if>
+      <if test="synTime != null">
+        #{synTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reSynTime != null">
+        #{reSynTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="batchTime != null">
+        #{batchTime,jdbcType=INTEGER},
+      </if>
+      <if test="synStatus != null">
+        #{synStatus,jdbcType=TINYINT},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateSynStatus">
+    update zto_es_buff_syn_config
+    set syn_status = #{record.synStatus,jdbcType=TINYINT}
+    where id=#{record.id,jdbcType=INTEGER}
+    and syn_status = #{oldStatus}
+  </update>
+  <update id="updateReSynTime">
+    update
+        zto_es_buff_syn_config
+    set syn_time = #{synTime,jdbcType=TIMESTAMP}
+    where id=#{id,jdbcType=INTEGER}
+    and syn_status=2
+  </update>
+  <update id="updateSynTimeAndStatus">
+    update
+        zto_es_buff_syn_config
+    set syn_time = #{synTime,jdbcType=TIMESTAMP}
+    syn_status = 0
+    where id=#{id,jdbcType=INTEGER}
+    and syn_status=1
+  </update>
+  <update id="updateSynConfig">
+    update
+        zto_es_buff_syn_config
+    set syn_time = #{synTime,jdbcType=TIMESTAMP},
+        db_type = #{dbType,jdbcType=TINYINT},
+        db_source = #{dbSource,jdbcType=VARCHAR},
+        db_name = #{dbName,jdbcType=VARCHAR},
+        tb_name = #{tbName,jdbcType=VARCHAR},
+        field_mapper = #{fieldMapper,jdbcType=VARCHAR}
+    where id=#{id,jdbcType=INTEGER}
+    and syn_status=0
+  </update>
+  <update id="updateSynBatchTime">
+    update
+        zto_es_buff_syn_config
+    set batch_time = #{batchTime,jdbcType=INTEGER}
+    where id=#{id,jdbcType=INTEGER}
+  </update>
+  <delete id="deleteSynConfigById">
+    update
+        zto_es_buff_syn_config
+    set is_deleted = 1
+    where id=#{id,jdbcType=INTEGER}
+  </delete>
+  <select id="listAllSynConfig" resultMap="BaseResultMap">
+      select * from zto_es_buff_syn_config where is_deleted=0
+    </select>
+  <select id="getSynConfig" resultMap="BaseResultMap">
+    select
+        id,db_type,db_source,db_name,tb_name,field_mapper,syn_time,batch_time
+    from
+        zto_es_buff_syn_config
+    where
+        db_type=#{dbType,jdbcType=TINYINT}
+    and db_source=#{dbSource,jdbcType=VARCHAR}
+    and db_name=#{dbName,jdbcType=VARCHAR}
+    and tb_name=#{tbName,jdbcType=VARCHAR}
+    and is_deleted=0
+  </select>
+</mapper>

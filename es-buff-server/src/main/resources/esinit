@@ -1,0 +1,191 @@
+新增es表
+PUT ts_buff_data_index_v1
+{
+  "mappings" : {
+      "properties" : {
+        "id" : {
+          "type" : "keyword"
+        },
+        "did" : {
+          "type" : "keyword"
+        },
+        "isDel" : {
+           "type" : "keyword"
+        },
+        "dTime" : {
+           "type" : "date",
+           "format" : "date_hour_minute_second_millis"
+        },
+        "d0" : {
+          "type" : "keyword"
+        },
+        "d1" : {
+          "type" : "keyword"
+        },
+        "d2" : {
+          "type" : "keyword"
+        },
+        "d3" : {
+          "type" : "keyword"
+        },
+        "d4" : {
+          "type" : "keyword"
+        },
+        "d5" : {
+          "type" : "keyword"
+        },
+        "d6" : {
+          "type" : "keyword"
+        },
+        "d7" : {
+          "type" : "keyword"
+        },
+        "d8" : {
+          "type" : "keyword"
+        },
+        "d9" : {
+          "type" : "keyword"
+        },
+		"t0" : {
+          "type" : "date",
+          "format" : "date_hour_minute_second_millis"
+        },
+		"t1" : {
+          "type" : "date",
+          "format" : "date_hour_minute_second_millis"
+        },
+		"t2" : {
+          "type" : "date",
+          "format" : "date_hour_minute_second_millis"
+        },
+		"t3" : {
+          "type" : "date",
+          "format" : "date_hour_minute_second_millis"
+        },
+		"t4" : {
+          "type" : "date",
+          "format" : "date_hour_minute_second_millis"
+        },
+        "ctime" : {
+          "type" : "date",
+          "format" : "date_hour_minute_second_millis"
+        }
+      }
+  }
+}
+
+
+PUT maintain_repair_detail_v1
+{
+  "mappings" : {
+      "properties" : {
+        "_es_id" : {
+          "type" : "keyword"
+        },
+        "a_id" : {
+          "type" : "keyword"
+        },
+        "b_id" : {
+          "type" : "keyword"
+        },
+        "type" : {
+          "type" : "keyword"
+        },
+        "car_service_order_code" : {
+           "type" : "keyword"
+        },
+        "maintain_work_order_code": {
+         "type" : "keyword"
+        },
+        "truck_number" : {
+          "type" : "keyword"
+        },
+        "car_brand" : {
+          "type" : "keyword"
+        },
+        "apply_team" : {
+          "type" : "keyword"
+        },
+        "truck_team" : {
+          "type" : "keyword"
+        },
+        "start_time" : {
+          "type" : "date",
+          "format" : "date_hour_minute_second_millis"
+        },
+        "end_time" : {
+          "type" : "date",
+          "format" : "date_hour_minute_second_millis"
+        },
+        "maintain_plant" : {
+          "type" : "keyword"
+        },
+        "project_name" : {
+          "type" : "keyword"
+        },
+        "work_hour_amount" : {
+          "type" : "keyword"
+        },
+        "material_name" : {
+          "type" : "keyword"
+        },
+        "material_count" : {
+          "type" : "keyword"
+        },
+        "remark" : {
+          "type" : "keyword"
+        },
+		"create_user" : {
+          "type" : "keyword"
+        },
+		"create_time" : {
+          "type" : "date",
+          "format" : "date_hour_minute_second_millis"
+        },
+        "ctime" : {
+          "type" : "date",
+          "format" : "date_hour_minute_second_millis"
+        }
+      }
+  }
+}
+
+POST _aliases
+{
+  "actions": [
+    {
+      "add": {
+        "index": "maintain_repair_detail_v1",
+        "alias": "maintain_repair_detail",
+        "is_write_index" : true
+      }
+    }
+  ]
+}
+
+
+---------------------
+别名设置
+POST _aliases
+{
+  "actions": [
+    {
+      "add": {
+        "index": "ts_buff_data_index_v1",
+        "alias": "ts_buff_data_index",
+        "is_write_index" : true
+      }
+    }
+  ]
+}
+
+
+GET /maintain_repair_detail/_search
+{
+  "query": {
+    "bool": {
+
+    }
+  },"from": 0,
+  "size": 20
+}

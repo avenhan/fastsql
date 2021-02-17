@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0          http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>es-buff-schedule</artifactId>
+    <packaging>jar</packaging>
+
+    <name>es-buff-schedule</name>
+    <description>tm-schedule Schedule for Framework</description>
+
+    <parent>
+        <groupId>com.zto.ts</groupId>
+        <artifactId>es-buff</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.zto.titans</groupId>
+            <artifactId>titans-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.zto.titans</groupId>
+            <artifactId>titans-job</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.zto.titans</groupId>
+            <artifactId>titans-dubbo</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.zto.titans</groupId>
+            <artifactId>titans-logging</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.zto.titans</groupId>
+            <artifactId>titans-config</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.zto.ts</groupId>
+            <artifactId>es-buff-api</artifactId>
+            <version>1.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>1.3.3</version>
+                <configuration>
+                    <configurationFile>src/main/resources/generatorConfig.xml</configurationFile>
+                    <verbose>true</verbose>
+                    <overwrite>true</overwrite>
+                </configuration>
+                <dependencies>
+                    <!--mybatis生成配置 -->
+                    <dependency>
+                        <groupId>org.mybatis</groupId>
+                        <artifactId>mybatis</artifactId>
+                        <version>3.4.0</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>5.1.39</version>
+                    </dependency>
+                    <!--mybatis-plugin插件使用配置 -->
+                    <dependency>
+                        <groupId>com.zto</groupId>
+                        <artifactId>mybatis-page</artifactId>
+                        <version>1.0-SNAPSHOT</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+</project>
